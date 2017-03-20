@@ -1,0 +1,50 @@
+<div *ngIf="user" class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>User</strong>
+                    <small>Edit</small>
+                    <button (click)="goBack()" type="button" class="btn btn-sm btn-outline-secondary pull-right"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</button>
+                </div>
+                <form [formGroup]="editForm" (ngSubmit)="submitForm(editForm.value)">
+                    <div class="card-block">
+                        <div class="form-group" [ngClass]="{ 'has-danger': editForm.controls.name.errors?.required }">
+                            <label for="company">Name</label>
+                            <input type="text" name="name" class="form-control col-sm-6" id="name" placeholder="Enter your name" [ngModel]="user.name"
+                                [formControl]="editForm.controls['name']">
+                            <p *ngIf="editForm.controls.name.errors?.required" class="text-danger">Name is required!</p>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-danger': editForm.controls.username.errors?.required || editForm.controls.username.errors?.minlength }">
+                            <label for="vat">Username</label>
+                            <input type="text" name="username" class="form-control col-sm-6" id="username" placeholder="Enter your username" [ngModel]="user.username"
+                                [formControl]="editForm.controls['username']">
+                            <p *ngIf="editForm.controls.username.errors?.minlength" class="text-danger">Username must have 5 character min!</p>
+                            <p *ngIf="editForm.controls.username.errors?.required" class="text-danger">Username is required!</p>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-danger': editForm.controls.email.errors?.required || editForm.controls.email.errors?.email }">
+                            <label for="street">Email</label>
+                            <input type="email" name="email" class="form-control col-sm-6" id="email" placeholder="Enter your email" [ngModel]="user.email"
+                                [formControl]="editForm.controls['email']">
+                            <p *ngIf="editForm.controls.email.errors?.email" class="text-danger">Email not valid!</p>
+                            <p *ngIf="editForm.controls.email.errors?.required" class="text-danger">Email is required!</p>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="pull-left">
+                            <button [disabled]="loading" type="submit" class="btn btn-sm btn-primary">
+                            <i class="fa fa-dot-circle-o"></i> 
+                                Submit
+                            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                        </button>
+                            <button (click)="reset()" type="button" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

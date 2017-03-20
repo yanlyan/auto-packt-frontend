@@ -5,6 +5,7 @@ import {
 } from '@angular/router';
 
 import { UserListComponent } from './user-list.component';
+import { UserEditComponent } from './user-edit.component';
 
 const routes: Routes = [
     {
@@ -12,6 +13,13 @@ const routes: Routes = [
         component: UserListComponent,
         data: {
             title: 'List User'
+        }
+    },
+    {
+        path: 'detail/:id',
+        component: UserEditComponent,
+        data: {
+            title: 'Edit User'
         }
     }
 ];

@@ -11,7 +11,7 @@
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
                 dropdownToggle>
                 <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                <span class="hidden-md-down">admin</span>
+                <span class="hidden-md-down">{{user.name}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
 
@@ -61,6 +61,7 @@
         </ol>
 
         <div class="container-fluid">
+            <alert></alert>
             <router-outlet></router-outlet>
         </div>
         <!-- /.conainer-fluid -->

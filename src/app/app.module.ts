@@ -27,6 +27,10 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { LocalStorageModule } from 'angular-2-local-storage';
 
 import { HttpClient } from './lib/http-client.service';
+import { UserModule } from './user/user.module';
+
+import { AlertService } from './shared/alert/alert.service';
+import { AlerComponent } from './shared/alert/alert.component';
 
 @NgModule({
   imports: [
@@ -37,6 +41,8 @@ import { HttpClient } from './lib/http-client.service';
     ChartsModule,
     FormsModule,
     HttpModule,
+    UserModule,
+
   ],
   declarations: [
     AppComponent,
@@ -46,15 +52,17 @@ import { HttpClient } from './lib/http-client.service';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     LoginComponent,
+    AlerComponent
 
   ],
-  providers: [AuthService, AppConfig, AuthGuard, {
+  providers: [AuthService, AppConfig, AuthGuard, AlertService, {
     provide: HttpClient,
-    useFactory: (backend: XHRBackend, options: RequestOptions) => {
-      return new HttpClient(backend, options);
-    },
+    useFactory: httpClientLoader,
     deps: [XHRBackend, RequestOptions]
   }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function httpClientLoader(backend: XHRBackend, options: RequestOptions) {
+  return new HttpClient(backend, options);
+}

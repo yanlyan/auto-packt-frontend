@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../user/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,8 @@ export class FullLayoutComponent implements OnInit {
 
   public disabled: boolean = false;
   public status: { isopen: boolean } = { isopen: false };
+  private user: User;
+
   constructor() { }
 
   public toggled(open: boolean): void {
@@ -21,5 +24,8 @@ export class FullLayoutComponent implements OnInit {
     this.status.isopen = !this.status.isopen;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('autopackt-currentUser'));
+    this.user = user;
+  }
 }
