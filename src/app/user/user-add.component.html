@@ -1,0 +1,68 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>User</strong>
+                    <small>Create New</small>
+                    <button (click)="goBack()" type="button" class="btn btn-sm btn-outline-secondary pull-right"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</button>
+                </div>
+                <form [formGroup]="addForm" (ngSubmit)="submitForm(addForm.value)">
+                    <div class="card-block">
+                        <div class="form-group" [ngClass]="{ 'has-danger': errors.email }">
+                            <label for="street">Email</label>
+                            <input (keyup)="validate()" type="email" name="email" class="form-control col-sm-6" id="email" placeholder="Enter your email"
+                                [ngModel]="user.email" [formControl]="addForm.controls['email']">
+                            <p *ngIf="errors.email?.email" class="text-danger">Email not valid!</p>
+                            <p *ngIf="errors.email?.required" class="text-danger">Email is required!</p>
+                            <p *ngIf="errors.email?.duplicate" class="text-danger">Email already exist!</p>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-danger': errors.name?.required }">
+                            <label for="company">Name</label>
+                            <input (keyup)="validate()" type="text" name="name" class="form-control col-sm-6" id="name" placeholder="Enter your name"
+                                [ngModel]="user.name" [formControl]="addForm.controls['name']">
+                            <p *ngIf="errors.name?.required" class="text-danger">Name is required!</p>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-danger': errors.username }">
+                            <label for="vat">Username</label>
+                            <input (keyup)="validate()" type="text" name="username" class="form-control col-sm-6" id="username" placeholder="Enter your username"
+                                [ngModel]="user.username" [formControl]="addForm.controls['username']">
+                            <p *ngIf="errors.username?.minlength" class="text-danger">Username must have 5 character min!</p>
+                            <p *ngIf="errors.username?.required" class="text-danger">Username is required!</p>
+                            <p *ngIf="errors.username?.duplicate" class="text-danger">Username already exist!</p>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-danger': errors.password }">
+                            <label for="vat">Password</label>
+                            <input (keyup)="validate()" type="password" name="password" class="form-control col-sm-6" id="password" placeholder="Enter your password"
+                                [ngModel]="user.password" [formControl]="addForm.controls['password']">
+                            <p *ngIf="errors.password?.pattern" class="text-danger"> Password must be at least 8 characters, must have (1) letter (upper or lowercase), and (1) digit
+                                or (1) special character.</p>
+                            <p *ngIf="errors.password?.required" class="text-danger">Password is required!</p>
+
+                        </div>
+
+                        <div class="form-group" [ngClass]="{ 'has-danger': errors.confirmPassword }">
+                            <label for="vat">Confirm Password</label>
+                            <input (keyup)="validate()" type="password" name="confirmPassword" class="form-control col-sm-6" id="password" placeholder="Enter your password again"
+                                [formControl]="addForm.controls['confirmPassword']">
+                            <p *ngIf="errors.confirmPassword?.equalTo" class="text-danger"> Must be equal to password.</p>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="pull-left">
+                            <button [disabled]="loading" type="submit" class="btn btn-sm btn-primary">
+                            <i class="fa fa-dot-circle-o"></i> 
+                                Submit
+                            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                        </button>
+                            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

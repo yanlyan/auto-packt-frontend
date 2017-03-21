@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { UserListComponent } from './user-list.component';
 import { UserEditComponent } from './user-edit.component';
+import { UserAddComponent } from './user-add.component';
 import { UserRoutingModule } from './user-routing.module';
 
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,6 @@ import { Ng2PaginationModule, PaginatePipe, PaginationControlsComponent, Paginat
         FormsModule,
         ReactiveFormsModule
     ],
-    declarations: [UserListComponent, UserEditComponent]
+    declarations: [UserListComponent, UserEditComponent, UserAddComponent]
 })
 export class UserModule { }

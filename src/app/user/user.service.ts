@@ -42,6 +42,30 @@ export class UserService {
         }).catch(this.errorHandler);
     }
 
+    create(user: User) {
+        return this._http.post(this._config.apiUrl + '/user', user).map((response: Response) => {
+            return response.json().data || false;
+        }).catch(this.errorHandler);
+    }
+
+    isEmailExist(email: string = '') {
+        return this._http.get(this._config.apiUrl + '/user/is/email/exist/' + email).map((response: Response) => {
+            return response.json().data;
+        }).catch(this.errorHandler);
+    }
+
+    isUsernameExist(username: string = '') {
+        return this._http.get(this._config.apiUrl + '/user/is/username/exist/' + username).map((response: Response) => {
+            return response.json().data;
+        }).catch(this.errorHandler);
+    }
+
+    delete(id: string) {
+        return this._http.delete(this._config.apiUrl + '/user/' + id).map((response: Response) => {
+            return response.json().data;
+        }).catch(this.errorHandler);
+    }
+
     errorHandler(error: Response) {
         console.error(error);
         return Observable.throw(error.json().error) || 'Server Error';

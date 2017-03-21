@@ -4,6 +4,8 @@
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> List User
+                    <button [routerLink]="'add'" class="btn btn-sm btn-success pull-right"> <i class="fa fa-plus" aria-hidden="true"></i> Create User</button>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="card-block">
                     <table class="table table-bordered table-striped table-condensed">
@@ -26,7 +28,7 @@
                                 <td>{{ user.created_at | date:'short'}}</td>
                                 <td>
                                     <button [routerLink]="['detail', user.id]" type="button" class="btn btn-primary btn-sm">Edit</button>
-                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    <button (click)="confirmDelete(user.id)" type="button" class="btn btn-danger btn-sm">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
